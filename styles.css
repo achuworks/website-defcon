@@ -4,6 +4,21 @@
     box-sizing: border-box;
 }
 
+.hero-image {
+    animation: float 4s ease-in-out infinite;
+    max-width: 100%;
+    height: auto;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
 :root {
     --primary-green: #00ff88;
     --secondary-green: #00cc6a;
@@ -68,6 +83,11 @@ html {
     font-size: 1.5rem;
     font-weight: 700;
     color: var(--primary-green);
+}
+
+.nav-logo-img {
+    max-width: 100%;
+    height: auto;
 }
 
 .logo-icon {
@@ -199,8 +219,8 @@ html {
 }
 
 .hero-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 700;
+    font-size: 3.5rem;
+    font-weight: 500;
     line-height: 1.2;
     margin-bottom: 2rem;
 }
@@ -263,6 +283,12 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.image-wrapper {
+    position: relative;
+    max-width: 100%;
+    height: auto;
 }
 
 .laptop-container {
@@ -476,6 +502,15 @@ section {
     height: 400px;
 }
 
+.defcon-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    border: 2px solid var(--primary-green);
+    box-shadow: 0 0 30px var(--glow-green);
+}
+
 .matrix-bg {
     position: absolute;
     top: 0;
@@ -567,7 +602,7 @@ section {
 
 .resources-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
     max-width: 1400px;
     margin: 0 auto;
@@ -1212,7 +1247,7 @@ section {
 
 .footer-links-section {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 4rem;
 }
 
@@ -1339,6 +1374,32 @@ section {
     color: var(--background-dark);
     transform: scale(1.1);
     box-shadow: 0 0 15px var(--glow-green);
+}
+
+.footer-contact {
+    text-align: center;
+}
+
+.footer-contact h4 {
+    color: var(--text-white);
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-contact p {
+    color: var(--text-gray);
+    font-size: 1rem;
+}
+
+.footer-contact a {
+    color: var(--primary-green);
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-contact a:hover {
+    text-shadow: 0 0 10px var(--glow-green);
 }
 
 .email-section {
@@ -1486,7 +1547,34 @@ section {
     }
 }
 
-/* Responsive Design */
+/* Enhanced Responsive Design */
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 30px;
+    }
+    
+    .nav-container {
+        padding: 0 30px;
+    }
+    
+    .hero-container {
+        padding: 0 30px;
+        gap: 3rem;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .resources-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-container {
+        padding: 0 30px;
+    }
+}
+
 @media (max-width: 1024px) {
     .footer-content {
         grid-template-columns: 1fr;
@@ -1499,12 +1587,48 @@ section {
     }
     
     .footer-links-section {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 2rem;
+    }
+    
+    .vision-mission-container {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+    
+    .defcon-logo-section {
+        height: 350px;
+    }
+    
+    .resources-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+    
+    .event-slide {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+    
+    .event-visual {
+        padding: 2rem;
+    }
+    
+    .tech-illustration {
+        height: 200px;
+    }
+    
+    .event-info {
+        padding: 2rem;
+    }
+    
+    .event-info h3 {
+        font-size: 2rem;
     }
 }
 
 @media (max-width: 768px) {
+    /* Navigation */
     .nav-menu {
         position: fixed;
         left: -100%;
@@ -1514,8 +1638,9 @@ section {
         width: 100%;
         text-align: center;
         transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.5);
         padding: 2rem 0;
+        z-index: 999;
     }
 
     .nav-menu.active {
@@ -1524,6 +1649,25 @@ section {
 
     .nav-menu li {
         margin: 1rem 0;
+        width: 100%;
+    }
+    
+    .nav-link {
+        padding: 1rem;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .dropdown-menu {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        background: rgba(0, 0, 0, 0.8);
+        box-shadow: none;
+        border: none;
+        border-radius: 0;
+        margin-top: 1rem;
     }
 
     .hamburger {
@@ -1542,14 +1686,33 @@ section {
         transform: translateY(-9px) rotate(-45deg);
     }
 
+    /* Logo scaling */
+    .nav-logo-img {
+        height: 40px;
+        width: auto;
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: auto;
+        padding-top: 100px;
+        padding-bottom: 50px;
+    }
+    
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 2rem;
+        padding: 0 20px;
     }
 
     .hero-visual {
         order: -1;
+    }
+    
+    .image-wrapper img {
+        max-width: 100%;
+        height: auto;
     }
 
     .laptop {
@@ -1563,32 +1726,106 @@ section {
 
     .hero-title {
         font-size: 2.5rem;
-    }
-
-    .vision-mission-container {
-        grid-template-columns: 1fr;
-        gap: 3rem;
+        line-height: 1.1;
     }
     
-    .resources-grid,
-    .programs-grid,
-    .team-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .event-slide {
-        grid-template-columns: 1fr;
-        text-align: left;
+    .hero-description {
+        font-size: 1rem;
+        max-width: 100%;
     }
     
+    .cta-button {
+        padding: 14px 28px;
+        font-size: 1rem;
+    }
+
+    /* About Section */
     .connect-header h2 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
     
-    .events-header h2 {
-        font-size: 2rem;
+    .connect-header p {
+        font-size: 1rem;
+    }
+    
+    .vision-section h3,
+    .mission-section h3 {
+        font-size: 1.5rem;
+    }
+    
+    .vision-section p,
+    .mission-section p {
+        font-size: 1rem;
+    }
+    
+    .defcon-logo-section {
+        height: 300px;
+    }
+    
+    .defcon-video {
+        height: 250px;
+        object-fit: cover;
     }
 
+    /* Resources Section */
+    .resources-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .resource-card {
+        margin: 0 auto;
+        max-width: 400px;
+    }
+    
+    .card-image {
+        height: 250px;
+    }
+    
+    .cyber-ops-cover h3 {
+        font-size: 1.5rem;
+    }
+
+    /* Programs Grid */
+    .programs-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Events Section */
+    .events-header h2 {
+        font-size: 2.2rem;
+    }
+    
+    .event-slide {
+        padding: 1rem;
+    }
+    
+    .event-info h3 {
+        font-size: 1.8rem;
+        letter-spacing: 1px;
+    }
+    
+    .event-info p {
+        font-size: 1rem;
+    }
+
+    /* Team Section */
+    .team-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+    
+    .team-photo {
+        width: 100px;
+        height: 100px;
+        font-size: 2.5rem;
+    }
+    
+    .photo-placeholder {
+        width: 90px;
+        height: 90px;
+    }
+
+    /* Footer */
     .footer-container {
         padding: 0 20px;
     }
@@ -1605,12 +1842,27 @@ section {
         text-align: center;
     }
     
+    .footer-legal {
+        justify-content: center;
+    }
+    
     .dotted-line {
         width: 150px;
     }
     
     .email-section {
         max-width: 300px;
+        margin: 0 auto;
+    }
+    
+    .social-icons {
+        gap: 1rem;
+    }
+    
+    .social-icon-link {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
     }
 }
 
@@ -1618,13 +1870,34 @@ section {
     .container {
         padding: 0 15px;
     }
+    
+    .nav-container {
+        padding: 0 15px;
+    }
 
+    /* Logo even smaller on very small screens */
+    .nav-logo-img {
+        height: 35px;
+        width: auto;
+    }
+
+    /* Hero Section */
+    .hero-container {
+        padding: 0 15px;
+    }
+    
     .hero-title {
         font-size: 2rem;
     }
 
     .hero-description {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        margin-bottom: 2rem;
+    }
+    
+    .cta-button {
+        padding: 12px 24px;
+        font-size: 0.95rem;
     }
 
     .laptop {
@@ -1636,6 +1909,7 @@ section {
         height: 125px;
     }
 
+    /* Section padding */
     section {
         padding: 60px 0;
     }
@@ -1644,14 +1918,44 @@ section {
         padding: 80px 0;
     }
     
+    .connect-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .vision-section h3,
+    .mission-section h3 {
+        font-size: 1.3rem;
+    }
+    
     .defcon-logo-section {
-        height: 300px;
+        height: 250px;
     }
     
-    .resources-grid {
-        grid-template-columns: 1fr;
+    .defcon-video {
+        height: 200px;
+    }
+
+    /* Events */
+    .events-header h2 {
+        font-size: 1.8rem;
     }
     
+    .event-info h3 {
+        font-size: 1.5rem;
+    }
+    
+    .social-links {
+        justify-content: center;
+        gap: 0.5rem;
+    }
+    
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    /* Footer */
     .footer {
         padding: 60px 0 0 0;
     }
@@ -1665,19 +1969,107 @@ section {
     }
     
     .footer-defcon-text {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
         letter-spacing: 2px;
     }
     
-    .social-icons {
-        gap: 1rem;
+    .email-section {
+        max-width: 280px;
     }
     
-    .social-icon-link {
-        width: 45px;
-        height: 45px;
+    .email-input {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+    }
+    
+    .email-send-btn {
+        width: 40px;
+        height: 40px;
         font-size: 1rem;
     }
     
+    /* Card content adjustments */
+    .card-content {
+        padding: 1.5rem;
+    }
     
+    .card-content p {
+        font-size: 0.9rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Team cards */
+    .team-card {
+        padding: 1.5rem;
+    }
+    
+    .team-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .team-bio {
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .connect-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .events-header h2 {
+        font-size: 1.6rem;
+    }
+    
+    .laptop {
+        width: 220px;
+        height: 138px;
+    }
+    
+    .laptop-screen {
+        height: 110px;
+    }
+    
+    .footer-defcon-text {
+        font-size: 1.2rem;
+        letter-spacing: 1px;
+    }
+    
+    .social-icon-link {
+        width: 40px;
+        height: 40px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape orientation fixes for mobile */
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding-top: 80px;
+        padding-bottom: 40px;
+    }
+    
+    .hero-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-description {
+        margin-bottom: 2rem;
+    }
+    
+    .laptop {
+        width: 200px;
+        height: 125px;
+    }
+    
+    .laptop-screen {
+        height: 100px;
+    }
 }
